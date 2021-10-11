@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat01.Test", "RpgCombat01.Test\RpgCombat01.Test.csproj", "{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat01", "RpgCombat01\RpgCombat01.csproj", "{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
