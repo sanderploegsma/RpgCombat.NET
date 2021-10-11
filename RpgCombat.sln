@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat02.Test", "RpgComb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat02", "RpgCombat02\RpgCombat02.csproj", "{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat03", "RpgCombat03\RpgCombat03.csproj", "{A2906802-3AC5-49E5-AAAC-65067EF929D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat03.Test", "RpgCombat03.Test\RpgCombat03.Test.csproj", "{4D48E25F-FDE9-4298-8A30-16B9C18703E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2906802-3AC5-49E5-AAAC-65067EF929D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2906802-3AC5-49E5-AAAC-65067EF929D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2906802-3AC5-49E5-AAAC-65067EF929D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2906802-3AC5-49E5-AAAC-65067EF929D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D48E25F-FDE9-4298-8A30-16B9C18703E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D48E25F-FDE9-4298-8A30-16B9C18703E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D48E25F-FDE9-4298-8A30-16B9C18703E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D48E25F-FDE9-4298-8A30-16B9C18703E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
