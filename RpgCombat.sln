@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat01.Test", "RpgCombat01.Test\RpgCombat01.Test.csproj", "{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration01.Test", "RpgCombat.Iteration01.Test\RpgCombat.Iteration01.Test.csproj", "{BBEFA0F4-DCDC-4547-B647-205A480DBB3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat01", "RpgCombat01\RpgCombat01.csproj", "{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration01", "RpgCombat.Iteration01\RpgCombat.Iteration01.csproj", "{2736A86F-B79E-40F0-8C1B-21E44BFAB19C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat02.Test", "RpgCombat02.Test\RpgCombat02.Test.csproj", "{963FAFEA-09E1-4547-8BD5-8161E0695BC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration02.Test", "RpgCombat.Iteration02.Test\RpgCombat.Iteration02.Test.csproj", "{963FAFEA-09E1-4547-8BD5-8161E0695BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat02", "RpgCombat02\RpgCombat02.csproj", "{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration02", "RpgCombat.Iteration02\RpgCombat.Iteration02.csproj", "{A4E14BF2-07E8-4B65-A95E-7CD3782DE033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat03", "RpgCombat03\RpgCombat03.csproj", "{A2906802-3AC5-49E5-AAAC-65067EF929D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration03", "RpgCombat.Iteration03\RpgCombat.Iteration03.csproj", "{A2906802-3AC5-49E5-AAAC-65067EF929D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat03.Test", "RpgCombat03.Test\RpgCombat03.Test.csproj", "{4D48E25F-FDE9-4298-8A30-16B9C18703E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration03.Test", "RpgCombat.Iteration03.Test\RpgCombat.Iteration03.Test.csproj", "{4D48E25F-FDE9-4298-8A30-16B9C18703E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat04.Test", "RpgCombat04.Test\RpgCombat04.Test.csproj", "{8731D608-BEC0-48D0-B37C-DFAA4537C212}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration04.Test", "RpgCombat.Iteration04.Test\RpgCombat.Iteration04.Test.csproj", "{8731D608-BEC0-48D0-B37C-DFAA4537C212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat04", "RpgCombat04\RpgCombat04.csproj", "{CDB11BA1-3909-4FC2-BF52-71353667079F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration04", "RpgCombat.Iteration04\RpgCombat.Iteration04.csproj", "{CDB11BA1-3909-4FC2-BF52-71353667079F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat05", "RpgCombat05\RpgCombat05.csproj", "{44B4A18C-CEDC-41BB-B671-C75922B1B473}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration05", "RpgCombat.Iteration05\RpgCombat.Iteration05.csproj", "{44B4A18C-CEDC-41BB-B671-C75922B1B473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat05.Test", "RpgCombat05.Test\RpgCombat05.Test.csproj", "{CE5974BD-978C-4C2A-B4A0-57EF3B31CB67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgCombat.Iteration05.Test", "RpgCombat.Iteration05.Test\RpgCombat.Iteration05.Test.csproj", "{CE5974BD-978C-4C2A-B4A0-57EF3B31CB67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
