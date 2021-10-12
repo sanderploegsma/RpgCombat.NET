@@ -9,35 +9,35 @@ namespace RpgCombat.Test
         [Fact]
         public void DamageIsSubtractedFromHealthOfVictim()
         {
-            var attacker = new Character();
-            var victim = new Character();
-            
-            attacker.Damage(victim, 100);
-            
-            Assert.Equal(900, victim.Health);
+            var character = new Character();
+            var target = new Character();
+
+            character.Damage(target, 100);
+
+            Assert.Equal(900, target.Health);
         }
-        
+
         [Fact]
         public void VictimRemainsAliveWhenDamageDoesNotExceedHealth()
         {
-            var attacker = new Character();
-            var victim = new Character();
-            
-            attacker.Damage(victim, 100);
-            
-            Assert.Equal(CharacterStatus.Alive, victim.Status);
+            var character = new Character();
+            var target = new Character();
+
+            character.Damage(target, 100);
+
+            Assert.Equal(CharacterStatus.Alive, target.Status);
         }
 
         [Fact]
         public void VictimDiesWhenDamageExceedsHealth()
         {
-            var attacker = new Character();
-            var victim = new Character();
-            
-            attacker.Damage(victim, 9999);
-            
-            Assert.Equal(CharacterStatus.Dead, victim.Status);
-            Assert.Equal(0, victim.Health);
+            var character = new Character();
+            var target = new Character();
+
+            character.Damage(target, 9999);
+
+            Assert.Equal(CharacterStatus.Dead, target.Status);
+            Assert.Equal(0, target.Health);
         }
 
         [Fact]
@@ -51,36 +51,36 @@ namespace RpgCombat.Test
         [Fact]
         public void DamageIsReducedWhenVictimIsMuchHigherLevel()
         {
-            var attacker = new Character();
-            var victim = new Character(level: 6);
-            
-            attacker.Damage(victim, 100);
-            
-            Assert.Equal(950, victim.Health);
+            var character = new Character();
+            var target = new Character { Level = 6 };
+
+            character.Damage(target, 100);
+
+            Assert.Equal(950, target.Health);
         }
 
         [Fact]
         public void DamageIsIncreasedWhenAttackerIsMuchHigherLevel()
         {
-            var attacker = new Character(level: 6);
-            var victim = new Character();
-            
-            attacker.Damage(victim, 100);
-            
-            Assert.Equal(850, victim.Health);
+            var character = new Character { Level = 6 };
+            var target = new Character();
+
+            character.Damage(target, 100);
+
+            Assert.Equal(850, target.Health);
         }
-        
+
         [Theory]
         [InlineData(CharacterType.Melee, 1, 1)]
         [InlineData(CharacterType.Ranged, 10, 10)]
         public void CanDamageWithinRange(CharacterType type, float x, float y)
         {
-            var attacker = new Character(type);
-            var victim = new Character(position: new Vector2(x, y));
-            
-            attacker.Damage(victim, 100);
-            
-            Assert.Equal(900, victim.Health);
+            var character = new Character(type);
+            var target = new Character { Position = new Vector2(x, y) };
+
+            character.Damage(target, 100);
+
+            Assert.Equal(900, target.Health);
         }
 
         [Theory]
@@ -88,29 +88,32 @@ namespace RpgCombat.Test
         [InlineData(CharacterType.Ranged, 15, 15)]
         public void CannotDamageOutOfRange(CharacterType type, float x, float y)
         {
-            var attacker = new Character(type);
-            var victim = new Character(position: new Vector2(x, y));
+            var character = new Character(type);
+            var target = new Character { Position = new Vector2(x, y) };
 
-            Assert.Throws<InvalidOperationException>(() => attacker.Damage(victim, 100));
+            Assert.Throws<InvalidOperationException>(() => character.Damage(target, 100));
         }
 
         [Fact]
         public void CharactersCannotDamageAllies()
         {
             var faction = new Faction();
-            var attacker = new Character(factions: faction);
-            var victim = new Character(factions: faction);
+            var character = new Character();
+            var ally = new Character();
 
-            Assert.Throws<InvalidOperationException>(() => attacker.Damage(victim, 100));
+            character.JoinFaction(faction);
+            ally.JoinFaction(faction);
+
+            Assert.Throws<InvalidOperationException>(() => character.Damage(ally, 100));
         }
 
         [Fact]
         public void DeadCharactersCannotBeDamaged()
         {
-            var attacker = new Character();
-            var victim = new Character(health: 0);
+            var character = new Character();
+            var target = new Character { Health = 0 };
 
-            Assert.Throws<InvalidOperationException>(() => attacker.Damage(victim, 100));
+            Assert.Throws<InvalidOperationException>(() => character.Damage(target, 100));
         }
     }
 }
