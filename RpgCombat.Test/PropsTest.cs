@@ -7,11 +7,11 @@ namespace RpgCombat.Test
     public class DamagePropTest
     {
         [Theory]
-        [InlineData(CharacterType.Melee, 1, 1)]
-        [InlineData(CharacterType.Ranged, 10, 10)]
-        public void CharacterCanDamagePropWithinRange(CharacterType type, float x, float y)
+        [InlineData(CharacterClass.Melee, 1, 1)]
+        [InlineData(CharacterClass.Ranged, 10, 10)]
+        public void CharacterCanDamagePropWithinRange(CharacterClass @class, float x, float y)
         {
-            var character = new Character(type);
+            var character = new Character(@class);
             var prop = new Prop(2000, new Vector2(x, y));
 
             character.Damage(prop, 100);
@@ -20,11 +20,11 @@ namespace RpgCombat.Test
         }
         
         [Theory]
-        [InlineData(CharacterType.Melee, 2,2)]
-        [InlineData(CharacterType.Ranged, 15, 15)]
-        public void CharacterCannotDamagePropOutsideRange(CharacterType type, float x, float y)
+        [InlineData(CharacterClass.Melee, 2,2)]
+        [InlineData(CharacterClass.Ranged, 15, 15)]
+        public void CharacterCannotDamagePropOutsideRange(CharacterClass @class, float x, float y)
         {
-            var character = new Character(type);
+            var character = new Character(@class);
             var prop = new Prop(2000, new Vector2(x, y));
 
             Assert.Throws<InvalidOperationException>(() => character.Damage(prop, 100));

@@ -2,8 +2,14 @@
 
 namespace RpgCombat
 {
+    /// <summary>
+    /// Any entity in the game.
+    /// </summary>
     public interface IEntity
     {
+        /// <summary>
+        /// The position of the entity within the game.
+        /// </summary>
         public Vector2 Position { get; }
     }
 

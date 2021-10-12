@@ -9,17 +9,36 @@ namespace RpgCombat
         Destroyed,
     }
 
+    /// <summary>
+    /// A prop is a static entity in the game that has Health and can be damaged.
+    /// If the prop's Health reaches 0 it is Destroyed.
+    /// </summary>
     public class Prop : ITarget
     {
+        /// <summary>
+        /// Create a new prop with the given amount of health and an optional position.
+        /// </summary>
+        /// <param name="health">The health of the prop (minimum: 0)</param>
+        /// <param name="position">The position of the prop. Will be set to the default if not provided.</param>
         public Prop(double health, Vector2 position = default)
         {
             Health = Math.Max(0, health);
             Position = position;
         }
 
+        /// <summary>
+        /// The current health of the prop.
+        /// </summary>
         public double Health { get; private set; }
+        
+        /// <summary>
+        /// The position of the prop.
+        /// </summary>
         public Vector2 Position { get; }
 
+        /// <summary>
+        /// The current status of the prop.
+        /// </summary>
         public PropStatus Status => Health switch
         {
             <= 0 => PropStatus.Destroyed,

@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace RpgCombat
 {
-    public enum CharacterType
+    public enum CharacterClass
     {
         Melee,
         Ranged,
@@ -21,28 +21,57 @@ namespace RpgCombat
     {
         private const double MaximumHealth = 1000;
         private const int MinimumLevel = 1;
-        private const CharacterType DefaultCharacterType = CharacterType.Melee;
+        private const CharacterClass DefaultClass = CharacterClass.Melee;
 
         private readonly HashSet<Faction> _factions = new();
 
-        public Character() : this(DefaultCharacterType)
+        /// <summary>
+        /// Create a new character with the default class.
+        /// </summary>
+        public Character() : this(DefaultClass)
         {
         }
 
-        public Character(CharacterType type)
+        /// <summary>
+        /// Create a new character with the given class.
+        /// </summary>
+        /// <param name="class">The class of the character</param>
+        public Character(CharacterClass @class)
         {
-            Type = type;
+            Class = @class;
             Health = MaximumHealth;
             Level = MinimumLevel;
             Position = Vector2.Zero;
         }
 
+        /// <summary>
+        /// The current health of the character.
+        /// </summary>
         public double Health { get; internal set; }
+        
+        /// <summary>
+        /// The current position of the character.
+        /// </summary>
         public Vector2 Position { get; internal set; }
+        
+        /// <summary>
+        /// The current level of the character.
+        /// </summary>
         public int Level { get; internal set; }
-        public CharacterType Type { get; }
+        
+        /// <summary>
+        /// The current class of the character.
+        /// </summary>
+        public CharacterClass Class { get; }
+        
+        /// <summary>
+        /// The factions this character belongs to.
+        /// </summary>
         public IReadOnlyCollection<Faction> Factions => _factions;
 
+        /// <summary>
+        /// The current status of the character.
+        /// </summary>
         public CharacterStatus Status => Health switch
         {
             <= 0 => CharacterStatus.Dead,
@@ -56,18 +85,37 @@ namespace RpgCombat
             _ => throw new ArgumentOutOfRangeException()
         };
 
+        /// <summary>
+        /// Deal damage to a target.
+        /// </summary>
+        /// <param name="target">The target to damage</param>
+        /// <param name="amount">The amount of damage to deal</param>
         public void Damage(ITarget target, double amount) => Behavior.Damage(this, target, amount);
-        public void Heal(Character target, double amount) => Behavior.Heal(this, target, amount);
+        
+        /// <summary>
+        /// Heal a character.
+        /// </summary>
+        /// <param name="character">The character to heal</param>
+        /// <param name="amount">The amount of health to heal</param>
+        public void Heal(Character character, double amount) => Behavior.Heal(this, character, amount);
 
         void ITarget.ReceiveDamage(Damage damage) => Behavior.ReceiveDamage(this, damage);
         private void ReceiveHealing(double amount) => Behavior.ReceiveHealing(this, amount);
 
+        /// <summary>
+        /// Join a faction.
+        /// </summary>
+        /// <param name="faction">The faction to join</param>
         public void JoinFaction(Faction faction)
         {
             faction.AddCharacter(this);
             _factions.Add(faction);
         }
 
+        /// <summary>
+        /// Leave a faction.
+        /// </summary>
+        /// <param name="faction">The faction to leave</param>
         public void LeaveFaction(Faction faction)
         {
             faction.RemoveCharacter(this);
@@ -78,10 +126,10 @@ namespace RpgCombat
         {
             var distance = this.DistanceTo(entity);
 
-            return Type switch
+            return Class switch
             {
-                CharacterType.Melee => distance <= 2,
-                CharacterType.Ranged => distance <= 20,
+                CharacterClass.Melee => distance <= 2,
+                CharacterClass.Ranged => distance <= 20,
                 _ => throw new ArgumentOutOfRangeException(),
             };
         }

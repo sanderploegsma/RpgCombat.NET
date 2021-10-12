@@ -71,11 +71,11 @@ namespace RpgCombat.Test
         }
 
         [Theory]
-        [InlineData(CharacterType.Melee, 1, 1)]
-        [InlineData(CharacterType.Ranged, 10, 10)]
-        public void CanDamageWithinRange(CharacterType type, float x, float y)
+        [InlineData(CharacterClass.Melee, 1, 1)]
+        [InlineData(CharacterClass.Ranged, 10, 10)]
+        public void CanDamageWithinRange(CharacterClass @class, float x, float y)
         {
-            var character = new Character(type);
+            var character = new Character(@class);
             var target = new Character { Position = new Vector2(x, y) };
 
             character.Damage(target, 100);
@@ -84,11 +84,11 @@ namespace RpgCombat.Test
         }
 
         [Theory]
-        [InlineData(CharacterType.Melee, 2, 2)]
-        [InlineData(CharacterType.Ranged, 15, 15)]
-        public void CannotDamageOutOfRange(CharacterType type, float x, float y)
+        [InlineData(CharacterClass.Melee, 2, 2)]
+        [InlineData(CharacterClass.Ranged, 15, 15)]
+        public void CannotDamageOutOfRange(CharacterClass @class, float x, float y)
         {
-            var character = new Character(type);
+            var character = new Character(@class);
             var target = new Character { Position = new Vector2(x, y) };
 
             Assert.Throws<InvalidOperationException>(() => character.Damage(target, 100));
