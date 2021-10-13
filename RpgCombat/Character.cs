@@ -19,8 +19,8 @@ namespace RpgCombat
 
     public class Character : ITarget
     {
-        private const double MaximumHealth = 1000;
-        private const int MinimumLevel = 1;
+        public const double MaximumHealth = 1000;
+        public const int MinimumLevel = 1;
         private const CharacterClass DefaultClass = CharacterClass.Melee;
 
         private readonly HashSet<Faction> _factions = new();
@@ -62,7 +62,7 @@ namespace RpgCombat
         /// <summary>
         /// The current class of the character.
         /// </summary>
-        public CharacterClass Class { get; }
+        public CharacterClass Class { get; internal set; }
         
         /// <summary>
         /// The factions this character belongs to.
@@ -76,6 +76,13 @@ namespace RpgCombat
         {
             <= 0 => CharacterStatus.Dead,
             _ => CharacterStatus.Alive
+        };
+
+        public float Range => Class switch
+        {
+            CharacterClass.Melee => 2,
+            CharacterClass.Ranged => 20,
+            _ => throw new ArgumentOutOfRangeException()
         };
 
         private CharacterBehavior Behavior => Status switch
@@ -100,7 +107,7 @@ namespace RpgCombat
         public void Heal(Character character, double amount) => Behavior.Heal(this, character, amount);
 
         void ITarget.ReceiveDamage(Damage damage) => Behavior.ReceiveDamage(this, damage);
-        private void ReceiveHealing(double amount) => Behavior.ReceiveHealing(this, amount);
+        internal void ReceiveHealing(double amount) => Behavior.ReceiveHealing(this, amount);
 
         /// <summary>
         /// Join a faction.
@@ -120,18 +127,6 @@ namespace RpgCombat
         {
             faction.RemoveCharacter(this);
             _factions.Remove(faction);
-        }
-
-        private bool IsInRange(IEntity entity)
-        {
-            var distance = this.DistanceTo(entity);
-
-            return Class switch
-            {
-                CharacterClass.Melee => distance <= 2,
-                CharacterClass.Ranged => distance <= 20,
-                _ => throw new ArgumentOutOfRangeException(),
-            };
         }
 
         private bool IsAlly(ITarget target)
@@ -156,7 +151,7 @@ namespace RpgCombat
                     throw new InvalidOperationException("Invalid target");
                 }
 
-                if (!character.IsInRange(target))
+                if (character.DistanceTo(target) > character.Range)
                 {
                     throw new InvalidOperationException("Target out of range");
                 }
@@ -176,7 +171,7 @@ namespace RpgCombat
                 var amount = damage.Amount * multiplier;
                 var maximumDamage = character.Health;
 
-                character.Health -= Math.Min(maximumDamage, amount);
+                character.Health -= Math.Min(maximumDamage, Math.Max(amount, 0));
             }
 
             public override void Heal(Character character, Character target, double amount)
@@ -186,11 +181,6 @@ namespace RpgCombat
                     throw new InvalidOperationException("Invalid target");
                 }
 
-                if (!character.IsInRange(target))
-                {
-                    throw new InvalidOperationException("Target out of range");
-                }
-
                 target.ReceiveHealing(amount);
             }
 
@@ -198,7 +188,7 @@ namespace RpgCombat
             {
                 var maximumHealingAmount = MaximumHealth - character.Health;
 
-                character.Health += Math.Min(maximumHealingAmount, amount);
+                character.Health += Math.Min(maximumHealingAmount, Math.Max(amount, 0));
             }
         }
 
