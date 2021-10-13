@@ -8,6 +8,20 @@ namespace RpgCombat
     public class Faction
     {
         private readonly HashSet<Character> _characters = new();
+
+        /// <summary>
+        /// Create a new faction with the given name.
+        /// </summary>
+        /// <param name="name">The name of the faction</param>
+        public Faction(string name)
+        {
+            Name = name;
+        }
+
+        /// <summary>
+        /// The name of the faction.
+        /// </summary>
+        public string Name { get; }
         
         /// <summary>
         /// The characters that belong to this faction.
@@ -23,5 +37,7 @@ namespace RpgCombat
         {
             _characters.Remove(character);
         }
+
+        public override string ToString() => Name;
     }
 }

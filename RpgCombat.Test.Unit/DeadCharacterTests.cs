@@ -21,10 +21,10 @@ namespace RpgCombat.Test.Unit
         [SetUp]
         public void SetUp()
         {
-            _subject = new Character(_characterClass) { Health = 0 };
-            _ally = new Character();
-            _other = new Character();
-            _faction = new Faction();
+            _subject = new Character("Subject", _characterClass) { Health = 0 };
+            _ally = new Character("Ally");
+            _other = new Character("Other");
+            _faction = new Faction("Faction");
 
             _subject.JoinFaction(_faction);
             _ally.JoinFaction(_faction);
@@ -33,7 +33,7 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void CannotDamageTargets([Random(1, 100, 5)] double damage)
         {
-            foreach (var target in new ITarget[] { new Character(), new Prop(1000) })
+            foreach (var target in new ITarget[] { new Character("Character"), new Prop("Tree", 1000) })
             {
                 var targetHealth = target.Health;
                 Assert.Throws<InvalidOperationException>(() => _subject.Damage(target, damage));
@@ -65,7 +65,7 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void CanJoinFactions()
         {
-            var faction = new Faction();
+            var faction = new Faction(TestContext.CurrentContext.Random.GetString());
             _subject.JoinFaction(faction);
 
             Assert.That(faction.Characters, Contains.Item(_subject));

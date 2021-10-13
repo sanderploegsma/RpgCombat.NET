@@ -9,7 +9,7 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void PropWithPositiveHealthIsNotDestroyed([Random(0, double.MaxValue, 5)] double health)
         {
-            var prop = new Prop(health);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), health);
 
             Assert.That(prop.Status, Is.EqualTo(PropStatus.Normal));
             Assert.That(prop.Health, Is.EqualTo(health));
@@ -18,7 +18,7 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void PropWithHealthOfZeroOrLessIsDestroyed([Random(double.MinValue, 0, 5)] double health)
         {
-            var prop = new Prop(health);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), health);
 
             Assert.That(prop.Status, Is.EqualTo(PropStatus.Destroyed));
             Assert.That(prop.Health, Is.Zero);
@@ -29,7 +29,7 @@ namespace RpgCombat.Test.Unit
         {
             const double health = 2000;
 
-            var prop = new Prop(health);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), health);
             ((ITarget)prop).ReceiveDamage(new Damage(damage, 1));
 
             Assert.That(prop.Health, Is.EqualTo(health - damage));
@@ -41,7 +41,7 @@ namespace RpgCombat.Test.Unit
             const double health = 2000;
             const double damage = 100;
 
-            var prop = new Prop(health);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), health);
             ((ITarget)prop).ReceiveDamage(new Damage(damage, attackerLevel));
 
             Assert.That(prop.Health, Is.EqualTo(health - damage));
@@ -52,7 +52,7 @@ namespace RpgCombat.Test.Unit
             [Random(100, 200, 5)] double health,
             [Random(200, 300, 5)] double damage)
         {
-            var prop = new Prop(health);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), health);
             var attackerLevel = TestContext.CurrentContext.Random.Next();
             ((ITarget)prop).ReceiveDamage(new Damage(damage, attackerLevel));
 
@@ -63,7 +63,7 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void DestroyedPropCannotReceiveDamage([Random(5)] double damage)
         {
-            var prop = new Prop(0);
+            var prop = new Prop(TestContext.CurrentContext.Random.GetString(), 0);
             Assert.Throws<InvalidOperationException>(() =>
                 ((ITarget)prop).ReceiveDamage(new Damage(damage, TestContext.CurrentContext.Random.Next())));
         }

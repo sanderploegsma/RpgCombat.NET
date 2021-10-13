@@ -8,15 +8,15 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void CharactersAreAddedToFactionWhenTheyJoin()
         {
-            var faction = new Faction();
+            var faction = new Faction(TestContext.CurrentContext.Random.GetString());
             Assert.That(faction.Characters, Is.Empty);
 
-            var character1 = new Character();
+            var character1 = new Character("Character 1");
             character1.JoinFaction(faction);
             Assert.That(faction.Characters, Has.Exactly(1).Items);
             Assert.That(faction.Characters, Contains.Item(character1));
 
-            var character2 = new Character();
+            var character2 = new Character("Character 2");
             character2.JoinFaction(faction);
             Assert.That(faction.Characters, Has.Exactly(2).Items);
             Assert.That(faction.Characters, Contains.Item(character1).And.Contains(character2));
@@ -25,9 +25,9 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void CharactersAreRemovedFromFactionWhenTheyLeave()
         {
-            var faction = new Faction();
-            var character1 = new Character();
-            var character2 = new Character();
+            var faction = new Faction(TestContext.CurrentContext.Random.GetString());
+            var character1 = new Character("Character 1");
+            var character2 = new Character("Character 2");
             character1.JoinFaction(faction);
             character2.JoinFaction(faction);
             Assert.That(faction.Characters, Has.Exactly(2).Items);

@@ -18,13 +18,20 @@ namespace RpgCombat
         /// <summary>
         /// Create a new prop with the given amount of health and an optional position.
         /// </summary>
+        /// <param name="name">The name of the prop</param>
         /// <param name="health">The health of the prop (minimum: 0)</param>
         /// <param name="position">The position of the prop. Will be set to the default if not provided.</param>
-        public Prop(double health, Vector2 position = default)
+        public Prop(string name, double health, Vector2 position = default)
         {
+            Name = name;
             Health = Math.Max(0, health);
             Position = position;
         }
+        
+        /// <summary>
+        /// The name of the prop.
+        /// </summary>
+        public string Name { get; }
 
         /// <summary>
         /// The current health of the prop.
@@ -54,5 +61,7 @@ namespace RpgCombat
 
             Health -= Math.Min(Health, damage.Amount);
         }
+
+        public override string ToString() => $"{Name} (Health:{Health}, Position:{Position})";
     }
 }

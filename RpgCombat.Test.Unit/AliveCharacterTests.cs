@@ -24,11 +24,11 @@ namespace RpgCombat.Test.Unit
         [SetUp]
         public void SetUp()
         {
-            _subject = new Character(_characterClass);
-            _ally = new Character();
-            _other = new Character();
+            _subject = new Character("Subject", _characterClass);
+            _ally = new Character("Ally");
+            _other = new Character("Other");
             
-            var faction = new Faction();
+            var faction = new Faction("Faction");
             _subject.JoinFaction(faction);
             _ally.JoinFaction(faction);
         }
@@ -192,8 +192,8 @@ namespace RpgCombat.Test.Unit
                 .Take(2)
                 .ToArray();
 
-            yield return new Prop(TestContext.CurrentContext.Random.NextDouble(1000, 2000), positionsInRange[0]);
-            yield return new Character { Position = positionsInRange[1] };
+            yield return new Prop("Tree", TestContext.CurrentContext.Random.NextDouble(1000, 2000), positionsInRange[0]);
+            yield return new Character("Character") { Position = positionsInRange[1] };
         }
         
         private IEnumerable<ITarget> TargetsNotInRange()
@@ -203,8 +203,8 @@ namespace RpgCombat.Test.Unit
                 .Take(2)
                 .ToArray();
 
-            yield return new Prop(TestContext.CurrentContext.Random.NextDouble(1000, 2000), positionsInRange[0]);
-            yield return new Character { Position = positionsInRange[1] };
+            yield return new Prop("Tree", TestContext.CurrentContext.Random.NextDouble(1000, 2000), positionsInRange[0]);
+            yield return new Character("Character") { Position = positionsInRange[1] };
         }
 
         private static IEnumerable<Vector2> GenerateRandomPositions(CancellationToken cancellationToken = default)

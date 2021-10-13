@@ -15,28 +15,28 @@ namespace RpgCombat.Test.Unit
         [Test]
         public void NewCharactersHave1000Health()
         {
-            var character = new Character(_characterClass);
+            var character = new Character(TestContext.CurrentContext.Random.GetString(), _characterClass);
             Assert.That(character.Health, Is.EqualTo(1000));
         }
 
         [Test]
         public void NewCharactersAreAlive()
         {
-            var character = new Character(_characterClass);
+            var character = new Character(TestContext.CurrentContext.Random.GetString(), _characterClass);
             Assert.That(character.Status, Is.EqualTo(CharacterStatus.Alive));
         }
 
         [Test]
         public void NewCharactersAreLevel1()
         {
-            var character = new Character(_characterClass);
+            var character = new Character(TestContext.CurrentContext.Random.GetString(), _characterClass);
             Assert.That(character.Level, Is.EqualTo(1));
         }
 
         [Test]
         public void NewCharactersBelongToNoFaction()
         {
-            var character = new Character(_characterClass);
+            var character = new Character(TestContext.CurrentContext.Random.GetString(), _characterClass);
             Assert.That(character.Factions, Is.Empty);
         }
     }

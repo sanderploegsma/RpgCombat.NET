@@ -26,43 +26,43 @@ namespace RpgCombat
         private readonly HashSet<Faction> _factions = new();
 
         /// <summary>
-        /// Create a new character with the default class.
+        /// Create a new character with the given name.
         /// </summary>
-        public Character() : this(DefaultClass)
+        /// <param name="name">The name of the character</param>
+        /// <param name="class">The optional class of the character</param>
+        public Character(string name, CharacterClass @class = DefaultClass)
         {
-        }
-
-        /// <summary>
-        /// Create a new character with the given class.
-        /// </summary>
-        /// <param name="class">The class of the character</param>
-        public Character(CharacterClass @class)
-        {
+            Name = name;
             Class = @class;
             Health = MaximumHealth;
             Level = MinimumLevel;
             Position = Vector2.Zero;
         }
+        
+        /// <summary>
+        /// The name of the character.
+        /// </summary>
+        public string Name { get; }
 
         /// <summary>
         /// The current health of the character.
         /// </summary>
-        public double Health { get; internal set; }
+        public double Health { get; set; }
         
         /// <summary>
         /// The current position of the character.
         /// </summary>
-        public Vector2 Position { get; internal set; }
+        public Vector2 Position { get; set; }
         
         /// <summary>
         /// The current level of the character.
         /// </summary>
-        public int Level { get; internal set; }
+        public int Level { get; set; }
         
         /// <summary>
         /// The current class of the character.
         /// </summary>
-        public CharacterClass Class { get; internal set; }
+        public CharacterClass Class { get; set; }
         
         /// <summary>
         /// The factions this character belongs to.
@@ -133,6 +133,9 @@ namespace RpgCombat
         {
             return target is Character character && Factions.Any(f => f.Characters.Contains(character));
         }
+
+        public override string ToString() =>
+            $"{Name} (Class:{Class}, Status:{Status}, Health:{Health}, Level:{Level}, Position:{Position})";
 
         private abstract class CharacterBehavior
         {
